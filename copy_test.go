@@ -2,9 +2,10 @@ package pq
 
 import (
 	"bytes"
-	"database/sql"
 	"strings"
 	"testing"
+
+	"github.com/flynn/go-sql"
 )
 
 func TestCopyInStmt(t *testing.T) {

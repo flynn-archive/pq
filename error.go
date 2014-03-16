@@ -1,11 +1,12 @@
 package pq
 
 import (
-	"database/sql/driver"
 	"fmt"
 	"io"
 	"net"
 	"runtime"
+
+	"github.com/flynn/go-sql/driver"
 )
 
 // Error severities

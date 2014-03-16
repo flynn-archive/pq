@@ -2,14 +2,15 @@ package pq
 
 import (
 	"bytes"
-	"database/sql/driver"
 	"encoding/hex"
 	"fmt"
-	"github.com/lib/pq/oid"
 	"math"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/flynn/go-sql/driver"
+	"github.com/flynn/pq/oid"
 )
 
 func encode(parameterStatus *parameterStatus, x interface{}, pgtypOid oid.Oid) []byte {

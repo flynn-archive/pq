@@ -1,8 +1,6 @@
 package pq
 
 import (
-	"database/sql"
-	"database/sql/driver"
 	"fmt"
 	"io"
 	"os"
@@ -10,6 +8,9 @@ import (
 	"runtime"
 	"testing"
 	"time"
+
+	"github.com/flynn/go-sql"
+	"github.com/flynn/go-sql/driver"
 )
 
 type Fatalistic interface {

@@ -1,15 +1,15 @@
 # pq - A pure Go postgres driver for Go's database/sql package
 
-[![Build Status](https://travis-ci.org/lib/pq.png?branch=master)](https://travis-ci.org/lib/pq)
+[![Build Status](https://travis-ci.org/flynn/pq.png?branch=master)](https://travis-ci.org/flynn/pq)
 
 ## Install
 
-	go get github.com/lib/pq
+	go get github.com/flynn/pq
 
 ## Docs
 
 For detailed documentation and basic usage examples, please see the package
-documentation at <http://godoc.org/github.com/lib/pq>.
+documentation at <http://godoc.org/github.com/flynn/pq>.
 
 ## Tests
 
@@ -20,7 +20,7 @@ variables.
 
 Example:
 
-	PGHOST=/var/run/postgresql go test github.com/lib/pq
+	PGHOST=/var/run/postgresql go test github.com/flynn/pq
 
 Optionally, a benchmark suite can be run as part of the tests:
 

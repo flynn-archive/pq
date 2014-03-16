@@ -10,8 +10,8 @@ import (
 	"os"
 	"os/exec"
 
-	"database/sql"
-	_ "github.com/lib/pq"
+	"github.com/flynn/go-sql"
+	_ "github.com/flynn/pq"
 )
 
 func main() {

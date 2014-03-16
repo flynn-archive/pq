@@ -1,9 +1,10 @@
 package hstore
 
 import (
-	"database/sql"
-	"database/sql/driver"
 	"strings"
+
+	"github.com/flynn/go-sql"
+	"github.com/flynn/go-sql/driver"
 )
 
 // A wrapper for transferring Hstore values back and forth easily.

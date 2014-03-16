@@ -1,10 +1,11 @@
 package hstore
 
 import (
-	"database/sql"
-	_ "github.com/lib/pq"
 	"os"
 	"testing"
+
+	"github.com/flynn/go-sql"
+	_ "github.com/flynn/pq"
 )
 
 type Fatalistic interface {

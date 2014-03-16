@@ -5,15 +5,16 @@ package pq
 import (
 	"bufio"
 	"bytes"
-	"database/sql"
-	"database/sql/driver"
-	"github.com/lib/pq/oid"
 	"io"
 	"net"
 	"strconv"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/flynn/go-sql"
+	"github.com/flynn/go-sql/driver"
+	"github.com/flynn/pq/oid"
 )
 
 var (

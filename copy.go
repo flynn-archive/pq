@@ -1,10 +1,11 @@
 package pq
 
 import (
-	"database/sql/driver"
 	"encoding/binary"
 	"errors"
 	"sync/atomic"
+
+	"github.com/flynn/go-sql/driver"
 )
 
 var (

@@ -4,12 +4,9 @@ import (
 	"bufio"
 	"crypto/md5"
 	"crypto/tls"
-	"database/sql"
-	"database/sql/driver"
 	"encoding/binary"
 	"errors"
 	"fmt"
-	"github.com/lib/pq/oid"
 	"io"
 	"net"
 	"os"
@@ -18,6 +15,10 @@ import (
 	"strings"
 	"time"
 	"unicode"
+
+	"github.com/flynn/go-sql"
+	"github.com/flynn/go-sql/driver"
+	"github.com/flynn/pq/oid"
 )
 
 // Common error types
