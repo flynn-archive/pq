@@ -81,6 +81,8 @@ type conn struct {
 
 	saveMessageType   byte
 	saveMessageBuffer *readBuf
+
+	fp *fastpath
 }
 
 func (c *conn) writeBuf(b byte) *writeBuf {
