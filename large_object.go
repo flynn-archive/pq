@@ -36,11 +36,11 @@ func NewLargeObjects(tx *sql.Tx) (*LargeObjects, error) {
 	if err != nil {
 		return nil, err
 	}
-	c.Lock()
-	defer c.Unlock()
 
+	c.Lock()
 	cn, ok := c.Conn.(*conn)
 	if !ok {
+		c.Unlock()
 		return nil, fmt.Errorf("pq: Expected driver.Conn to be *pq.conn, got %T", c.Conn)
 	}
 	if cn.fp == nil {
@@ -50,11 +50,9 @@ func NewLargeObjects(tx *sql.Tx) (*LargeObjects, error) {
 		c.Unlock()
 		res, err := tx.Query(largeObjectFns)
 		if err != nil {
-			c.Lock()
 			return nil, err
 		}
 		if err := cn.fp.addFunctions(res); err != nil {
-			c.Lock()
 			return nil, err
 		}
 		c.Lock()
@@ -66,6 +64,7 @@ func NewLargeObjects(tx *sql.Tx) (*LargeObjects, error) {
 	}
 	_, lo.Has64 = cn.fp.fns["lo_lseek64"]
 
+	c.Unlock()
 	return lo, nil
 }
 
