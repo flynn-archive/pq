@@ -108,7 +108,7 @@ func TestLargeObject(t *testing.T) {
 	}
 
 	_, err = lo.Open(id, LargeObjectModeRead)
-	if e, ok := err.(*Error); !ok || e.Code != "42704" {
-		t.Errorf("Expected error 42704, got %#v", err)
+	if e, ok := err.(*Error); !ok || e.Code.Name() != "undefined_object" {
+		t.Errorf("Expected undefined_object error, got %#v", err)
 	}
 }
