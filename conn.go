@@ -81,12 +81,14 @@ type Dialer interface {
 	DialTimeout(network, address string, timeout time.Duration) (net.Conn, error)
 }
 
-type defaultDialer struct{}
+var DefaultDialer Dialer = simpleDialer{}
 
-func (d defaultDialer) Dial(ntw, addr string) (net.Conn, error) {
+type simpleDialer struct{}
+
+func (d simpleDialer) Dial(ntw, addr string) (net.Conn, error) {
 	return net.Dial(ntw, addr)
 }
-func (d defaultDialer) DialTimeout(ntw, addr string, timeout time.Duration) (net.Conn, error) {
+func (d simpleDialer) DialTimeout(ntw, addr string, timeout time.Duration) (net.Conn, error) {
 	return net.DialTimeout(ntw, addr, timeout)
 }
 
@@ -116,7 +118,7 @@ func (c *conn) writeBuf(b byte) *writeBuf {
 }
 
 func Open(name string) (_ driver.Conn, err error) {
-	return DialOpen(defaultDialer{}, name)
+	return DialOpen(DefaultDialer, name)
 }
 
 func DialOpen(d Dialer, name string) (_ driver.Conn, err error) {
