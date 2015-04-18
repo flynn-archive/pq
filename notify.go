@@ -682,6 +682,7 @@ func (l *Listener) Close() error {
 		l.cn.Close()
 	}
 	l.isClosed = true
+	l.reconnectCond.Broadcast()
 
 	return nil
 }
@@ -705,10 +706,11 @@ func (l *Listener) listenerConnLoop() {
 				break
 			}
 
+			l.emitEvent(ListenerEventConnectionAttemptFailed, err)
+
 			if l.closed() {
 				return
 			}
-			l.emitEvent(ListenerEventConnectionAttemptFailed, err)
 
 			time.Sleep(reconnectInterval)
 			reconnectInterval *= 2
@@ -737,10 +739,12 @@ func (l *Listener) listenerConnLoop() {
 		}
 
 		err := l.disconnectCleanup()
+
+		l.emitEvent(ListenerEventDisconnected, err)
+
 		if l.closed() {
 			return
 		}
-		l.emitEvent(ListenerEventDisconnected, err)
 
 		time.Sleep(nextReconnect.Sub(time.Now()))
 	}
